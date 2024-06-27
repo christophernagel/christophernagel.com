@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 104px;
+}
+
+body {
+  margin: 0;
+  padding: 1px 0 0;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  font-size: 26px;
+  font-family: "EB Garamond", serif;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+p {
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+hr {
+  border: 0.5px solid black;
+  border-radius: 5px;
+  margin: -18px 0 3px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 1000;
+  width: 100%;
+  padding: 16px 0 12px;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 2.5%;
+}
+
+.wrapper,
+.navbar-content {
+  width: 96%;
+  max-width: 1724px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.logo img {
+  height: 52px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.icon-link img {
+  height: 24px;
+}
+
+.section {
+  display: flex;
+  margin-bottom: 40px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.about-text {
+  width: 58%;
+  padding-right: 56px;
+}
+
+.about-image {
+  width: 42%;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 4px;
+}
+
+.about-image.about {
+  aspect-ratio: 1/0.937;
+}
+
+.about-image.about img {
+  border: 6px solid #10141b;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.3s ease;
+}
+
+.about-image.contact img {
+  border: 1px solid #10141b;
+}
+
+.portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: -18px;
+  width: calc(100% + 36px);
+  row-gap: 16px;
+}
+
+.portfolio-item {
+  width: calc(33.333% - 36px);
+  margin: 18px;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  border: 16px solid #1a202c;
+  transition: border-color 0.3s ease;
+}
+
+.portfolio-item img:hover {
+  border-color: #272d31;
+}
+
+.portfolio-item:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio-item:last-child a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.portfolio-item:last-child img {
+  max-width: 112px;
+  border: none;
+}
+
+a {
+  color: #2774ae;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #215387;
+}
+
+.welcome-button {
+  color: #383833;
+  font-family: "EB Garamond", serif;
+  font-size: 26px;
+  font-weight: 400;
+  position: relative;
+}
+
+.welcome-button:hover,
+.welcome-button:focus {
+  color: #527979;
+}
+
+.welcome-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+}
+
+.icon-link {
+  color: black;
+}
+
+.icon-link:hover,
+.icon-link:focus {
+  color: #527979;
+}
+
+a:not(.welcome-button) {
+  text-decoration: underline;
+}
+
+#scrollToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  border: 2px solid black;
+  background-color: #ffffff;
+  color: black;
+  cursor: pointer;
+  padding: 9px 12px;
+  border-radius: 16px;
+  display: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#scrollToTop:hover {
+  background-color: #d0f2fc;
+}
+
+.caption-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+
+.caption-container .shuffle-icon {
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 5px;
+  transition: color 0.3s ease;
+}
+
+.caption-container .shuffle-icon:hover {
+  color: #527979;
+}
+
+@media (max-width: 1111px) {
+  .portfolio-item {
+    width: calc(50% - 36px);
+  }
+}
+
+@media (max-width: 748px) {
+  .wrapper,
+  .navbar-content {
+    width: 94%;
+  }
+
+  .portfolio-item {
+    width: 100%;
+  }
+
+  .section {
+    flex-direction: column;
+  }
+
+  .about-text,
+  .about-image {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  h2,
+  .welcome-button {
+    font-size: 22px;
+  }
+}

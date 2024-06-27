@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chris's Website :)</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="android-icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png" />
+    <link rel="android-icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png" />
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    
+    <!-- External JavaScript -->
+    <script src="scripts.js" defer></script>
+  </head>
+    
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="navbar-content">
+        <div class="logo">
+          <a href="#" id="logo-link">
+            <img src="/images/logo.png" alt="Logo" id="logo" />
+          </a>
+        </div>
+        <div class="nav-links">
+          <a href="mailto:chris@christophernagel.com" class="icon-link">
+            <i class="fa-solid fa-envelope fa-lg"></i>
+          </a>
+          <a href="https://x.com/nagelbagell" target="_blank" class="icon-link">
+            <i class="fa-brands fa-twitter fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <!-- Welcome Section -->
+      <section
+        class="section about"
+        style="padding-top: 4px; padding-bottom: 48px"
+      >
+        <div class="about-text">
+          <h2 style="padding-top: 32px">Hi, I'm Chris.</h2>
+          <h2>
+            I'm currently a web designer for
+            <a href="https://www.uclahealth.org/" target="_blank">UCLA Health</a
+            >, helping patients connect with physicians and community services.
+          </h2>
+          <h2 style="margin-bottom: 88px">
+            <a class="welcome-button" href="#my-work"
+              >View My Work
+              <i
+                class="fa-solid fa-chevron-down"
+                style="transform: scale(0.72)"
+              ></i
+            ></a>
+          </h2>
+        </div>
+        <div class="about-image about">
+          <img id="shuffleImage" src="" alt="" />
+          <div class="caption-container">
+            <small id="imageCaption"></small>
+            <i class="fa-solid fa-dice shuffle-icon" id="shuffleIcon"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio Section -->
+      <h2 id="my-work">My Work</h2>
+      <hr style="margin-bottom: 24px" />
+      <section class="portfolio" style="padding-bottom: 72px">
+        <div class="portfolio-item">
+          <h3>
+            <a
+              class="portfolio-title"
+              href="https://associationmedpeds.org/"
+              target="_blank"
+              >ASSOCIATION OF MED-PEDS PHYSICIANS</a
+            >
+          </h3>
+          <a href="https://associationmedpeds.org/" target="_blank">
+            <img
+              src="/images/AMPP.png"
+              alt="Association of Med-Peds Physicians"
+            />
+          </a>
+          <small>
+            Association of Med-Peds Physicians (AMPP), 2023<br />UX, Web Design
+            (Handed off)
+          </small>
+        </div>
+        <div class="portfolio-item">
+          <h3>
+            <a
+              class="portfolio-title"
+              href="https://www.uclahealth.org/departments/medicine/medicine-pediatrics"
+              target="_blank"
+              >UCLA MEDICINE-PEDIATRICS WEBSITE</a
+            >
+          </h3>
+          <a
+            href="https://www.uclahealth.org/departments/medicine/medicine-pediatrics"
+            target="_blank"
+          >
+            <img src="/images/MP.png" alt="UCLA Health Medicine-Pediatrics" />
+          </a>
+          <small>UCLA Health, 2022-2023<br />UX, Web Design</small>
+        </div>
+        <div class="portfolio-item">
+          <h3>
+            <a
+              class="portfolio-title"
+              href="https://www.therasurf.org/"
+              target="_blank"
+              >THERASURF WEBSITE</a
+            >
+          </h3>
+          <a href="https://www.therasurf.org/" target="_blank">
+            <img
+              style="aspect-ratio: 1/1"
+              src="/images/therasurf.jpg"
+              alt="THERAsurf"
+            />
+          </a>
+          <small>THERAsurf, 2022<br />UX, Web Design</small>
+        </div>
+        <div class="portfolio-item">
+          <h3>EARKICK ONBOARDING REDESIGN</h3>
+          <img src="/images/earkick.png" alt="Earkick" />
+          <small>Earkick, 2022<br />UX, UI, Prototyping</small>
+        </div>
+        <div class="portfolio-item">
+          <h3>WEBFLOW ACCESSIBILITY CONCEPT</h3>
+          <img src="/images/toolbox.png" alt="Webflow Accessibility Concept" />
+          <small>Personal, 2022<br />UX, UI, Prototyping</small>
+        </div>
+        <div class="portfolio-item last-child">
+          <a href="#about">
+            <img src="/images/monacle.png" alt="About" />
+          </a>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <h2 id="about">About</h2>
+      <hr />
+      <section
+        class="section contact"
+        style="padding-top: 12px; padding-bottom: 64px"
+      >
+        <div class="about-text">
+          <p>
+            Hi, I'm Chris. <br /><br />I graduated from CSU Long Beach in 2022
+            with a BA in Theater Design and Technology. <br />I like to draw,
+            read, surf, hike, run (kinda), bike around, design, and build stuff
+            (physically and digitally). <br />I also like solving problems and
+            learning new things to help me solve more interesting problems.
+            <br /><br />
+            <b>I currently know:</b> html+css, bash, php + js fundamentals, and
+            how to set up a venv
+            <br />
+            <b>I'm currently learning:</b> ML foundations with fast.ai
+            <br />
+            <b>I'd like to learn:</b> c, js <br /><br />
+            My favorite part about digital stuff is that anything which can be
+            imagined and thought out can be built. Working through the design
+            process and seeing ideas move from a mental visual to a finished
+            product is a reward cycle for me, and eventually, I'd like to be
+            able to build the most neat and interesting stuff.
+            <br /><br />
+            I also like reading neat and interesting stuff. If you have any
+            inclination to suggest a book,
+            <a href="mailto:chris@christophernagel.com">please feel free.</a>
+            <br /><br />
+            If you've made it this far, thank you, and I hope you have a good
+            day.
+          </p>
+        </div>
+        <div class="about-image contact">
+          <img src="/images/malibu.png" alt="Contact image" />
+          <small>Malibu Invitational,1966<br />Ron Stoner</small>
+        </div>
+      </section>
+      <button id="scrollToTop" title="Go to top">↑</button>
+      <p><b>Christopher</b>Nagel ©2024</p>
+    </div>
+  </body>
+
+</html>
