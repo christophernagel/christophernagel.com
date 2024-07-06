@@ -65,13 +65,30 @@ hr {
   height: 52px;
 }
 
-.nav-links {
+.icon-link {
+  color: black;
   display: flex;
-  gap: 24px;
+  align-items: center;
+  justify-content: center;
 }
 
-.icon-link img {
-  height: 24px;
+.icon-link:hover,
+.icon-link:focus {
+  color: #527979;
+}
+
+.github-icon {
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
 }
 
 .section {
@@ -191,16 +208,7 @@ a:focus {
   background-color: currentColor;
 }
 
-.icon-link {
-  color: black;
-}
-
-.icon-link:hover,
-.icon-link:focus {
-  color: #527979;
-}
-
-a:not(.welcome-button) {
+a:not(.welcome-button):not(.nav-links a) {
   text-decoration: underline;
 }
 
