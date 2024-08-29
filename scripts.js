@@ -1,5 +1,5 @@
 // Welcome Image Shuffler
-let images;
+let images = [];
 let currentImageIndex = 0;
 
 function shuffleArray(array) {
@@ -7,35 +7,48 @@ function shuffleArray(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
-  return array;
+}
+
+function formatCaption(caption) {
+  return caption
+    .replace(/<br\s*\/?>/gi, "\n") // Replace <br> tags with newlines
+    .replace(/<font[^>]*>(.*?)<\/font>/gi, "$1") // Remove font tags, keep content
+    .replace(/&lt;/g, "<") // Replace HTML entities
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&");
 }
 
 function updateImage() {
-  if (!images || images.length === 0) return;
+  if (images.length === 0) return;
 
   const img = document.getElementById("shuffleImage");
   const caption = document.getElementById("imageCaption");
 
-  img.src = images[currentImageIndex].src;
-  img.alt = images[currentImageIndex].alt;
-  caption.innerHTML = images[currentImageIndex].caption;
+  const { src, alt, caption: imageCaption } = images[currentImageIndex];
+
+  img.src = src;
+  img.alt = alt;
+  caption.textContent = formatCaption(imageCaption);
+  caption.style.whiteSpace = "pre-wrap"; // Preserve formatting
+}
+
+function handleShuffleClick() {
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  updateImage();
 }
 
 // Fetch the JSON file
 fetch("/images.json")
   .then((response) => response.json())
   .then((data) => {
-    images = shuffleArray(data.shuffleImages);
+    images = data.shuffleImages;
+    shuffleArray(images);
     currentImageIndex = Math.floor(Math.random() * images.length);
     updateImage();
 
-    // Add event listener after images are loaded
     document
       .getElementById("shuffleIcon")
-      .addEventListener("click", function () {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateImage();
-      });
+      .addEventListener("click", handleShuffleClick);
   })
   .catch((error) => console.error("Error loading images:", error));
 
