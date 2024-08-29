@@ -2,6 +2,10 @@
 let images = [];
 let currentImageIndex = 0;
 
+const imgElement = document.getElementById("shuffleImage");
+const captionElement = document.getElementById("imageCaption");
+const shuffleIconElement = document.getElementById("shuffleIcon");
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -9,27 +13,32 @@ function shuffleArray(array) {
   }
 }
 
-function formatCaption(caption) {
-  return caption
-    .replace(/<br\s*\/?>/gi, "\n") // Replace <br> tags with newlines
-    .replace(/<font[^>]*>(.*?)<\/font>/gi, "$1") // Remove font tags, keep content
-    .replace(/&lt;/g, "<") // Replace HTML entities
-    .replace(/&gt;/g, ">")
-    .replace(/&amp;/g, "&");
-}
+const formatCaption = (() => {
+  const brRegex = /<br\s*\/?>/gi;
+  const fontRegex = /<font[^>]*>(.*?)<\/font>/gi;
+  const entityMap = {
+    "&lt;": "<",
+    "&gt;": ">",
+    "&amp;": "&",
+  };
+  const entityRegex = /&lt;|&gt;|&amp;/g;
+
+  return (caption) => {
+    return caption
+      .replace(brRegex, "\n")
+      .replace(fontRegex, "$1")
+      .replace(entityRegex, (match) => entityMap[match]);
+  };
+})();
 
 function updateImage() {
   if (images.length === 0) return;
 
-  const img = document.getElementById("shuffleImage");
-  const caption = document.getElementById("imageCaption");
+  const { src, alt, caption } = images[currentImageIndex];
 
-  const { src, alt, caption: imageCaption } = images[currentImageIndex];
-
-  img.src = src;
-  img.alt = alt;
-  caption.textContent = formatCaption(imageCaption);
-  caption.style.whiteSpace = "pre-wrap"; // Preserve formatting
+  imgElement.src = src;
+  imgElement.alt = alt;
+  captionElement.textContent = formatCaption(caption);
 }
 
 function handleShuffleClick() {
@@ -46,11 +55,12 @@ fetch("/images.json")
     currentImageIndex = Math.floor(Math.random() * images.length);
     updateImage();
 
-    document
-      .getElementById("shuffleIcon")
-      .addEventListener("click", handleShuffleClick);
+    shuffleIconElement.addEventListener("click", handleShuffleClick);
   })
   .catch((error) => console.error("Error loading images:", error));
+
+// Set caption white-space style once
+captionElement.style.whiteSpace = "pre-wrap";
 
 // Scroll to top functionality
 const scrollToTopBtn = document.getElementById("scrollToTop");
