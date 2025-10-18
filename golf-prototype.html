@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golf Club Configurator - Chris Nagel</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        overflow: hidden;
+      }
+
+      .configurator-container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Overlay controls - top left */
+      .overlay-controls {
+        position: absolute;
+        top: 58px;
+        left: 10px;
+        display: flex;
+        gap: 10px;
+        z-index: 2000;
+      }
+
+      .control-button {
+        background: rgba(0, 0, 0, 0.8);
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        padding: 10px 16px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+
+      .control-button:hover {
+        background: rgba(0, 255, 0, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .control-button i {
+        font-size: 14px;
+      }
+
+      /* Favicon bottom left */
+      .favicon-watermark {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        z-index: 2000;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      .favicon-watermark:hover {
+        opacity: 1;
+      }
+
+      .favicon-watermark img {
+        width: 128px;
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .overlay-controls {
+          flex-direction: column;
+        }
+
+        .favicon-watermark img {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="configurator-container">
+      <!-- Overlay Controls -->
+      <div class="overlay-controls">
+        <a href="/#my-work" class="control-button">
+          <i class="fa-solid fa-arrow-left"></i>
+          Back to Portfolio
+        </a>
+        <a
+          href="https://github.com/christophernagel/golf-configurator"
+          target="_blank"
+          class="control-button"
+        >
+          <i class="fa-brands fa-github"></i>
+          View Source
+        </a>
+      </div>
+
+      <!-- Favicon Watermark -->
+      <a href="/" class="favicon-watermark">
+        <img src="/images/logo.png" alt="Chris Nagel" />
+      </a>
+
+      <!-- Embedded Configurator -->
+      <iframe
+        src="/golf-prototype/index.html"
+        title="Golf Club Configurator"
+      ></iframe>
+    </div>
+  </body>
+</html>
