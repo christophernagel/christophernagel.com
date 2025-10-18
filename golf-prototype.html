@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Golf Club Configurator - Chris Nagel</title>
-
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico" />
     <link
@@ -24,13 +23,11 @@
       sizes="180x180"
       href="/favicon/apple-touch-icon.png"
     />
-
     <!-- External CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,7 +35,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
-
     <style>
       * {
         box-sizing: border-box;
@@ -63,12 +59,13 @@
         border: none;
       }
 
-      /* Overlay controls - top left */
+      /* Overlay controls - desktop */
       .overlay-controls {
         position: absolute;
         top: 58px;
         left: 10px;
         display: flex;
+        flex-direction: row;
         gap: 10px;
         z-index: 2000;
       }
@@ -87,18 +84,25 @@
         align-items: center;
         gap: 8px;
         transition: all 0.2s;
+        white-space: nowrap;
       }
 
-      .control-button:hover {
+      .control-button:hover,
+      .control-button:focus {
         background: rgba(0, 255, 0, 0.1);
         transform: translateY(-1px);
+        color: #00ff00;
+      }
+
+      .control-button:visited {
+        color: #00ff00;
       }
 
       .control-button i {
         font-size: 14px;
       }
 
-      /* Favicon bottom left */
+      /* Favicon bottom right - desktop */
       .favicon-watermark {
         position: absolute;
         bottom: 16px;
@@ -117,14 +121,59 @@
         display: block;
       }
 
-      @media (max-width: 768px) {
+      /* Tablet styles (769px - 1024px) */
+      @media (max-width: 1024px) and (min-width: 769px) {
         .overlay-controls {
-          flex-direction: column;
+          top: 48px;
+          gap: 8px;
+        }
+
+        .control-button {
+          padding: 8px 14px;
+          font-size: 11px;
         }
 
         .favicon-watermark img {
-          width: 36px;
-          height: 36px;
+          width: 96px;
+        }
+      }
+
+      /* Mobile styles (≤768px) */
+      @media (max-width: 768px) {
+        .overlay-controls {
+          top: 32px;
+          left: 6px;
+          flex-direction: row;
+          gap: 4px;
+        }
+
+        .control-button {
+          padding: 6px 8px;
+          font-size: 10px;
+          gap: 4px;
+          border-radius: 3px;
+          min-width: auto;
+        }
+
+        .control-button i {
+          font-size: 12px;
+        }
+
+        .favicon-watermark {
+          bottom: 8px;
+          left: auto;
+          right: 8px;
+        }
+
+        .favicon-watermark img {
+          width: 80px;
+        }
+      }
+
+      /* Extra small mobile (≤480px) */
+      @media (max-width: 480px) {
+        .favicon-watermark img {
+          width: 80px;
         }
       }
     </style>
@@ -135,23 +184,22 @@
       <div class="overlay-controls">
         <a href="/#my-work" class="control-button">
           <i class="fa-solid fa-arrow-left"></i>
-          Back to Portfolio
+          <span class="button-text">Back to Portfolio</span>
         </a>
+
         <a
           href="https://github.com/christophernagel/golf-configurator"
           target="_blank"
           class="control-button"
         >
           <i class="fa-brands fa-github"></i>
-          View Source
+          <span class="button-text">View Source</span>
         </a>
       </div>
-
       <!-- Favicon Watermark -->
       <a href="/" class="favicon-watermark">
         <img src="/images/logo.png" alt="Chris Nagel" />
       </a>
-
       <!-- Embedded Configurator -->
       <iframe
         src="/golf-prototype/index.html"
