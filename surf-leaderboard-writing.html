@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surfboard Leaderboard - Project Writing</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    .wrapper {
+      width: 96%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    /* Navigation */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 0;
+      border-bottom: 0.5px solid black;
+      margin-bottom: 2rem;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: #527979;
+    }
+
+    /* Header Image */
+    .header-image {
+      width: 100%;
+      height: 300px;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      border: 1px solid #e0e0e0;
+    }
+
+    .header-image span {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Typography */
+    h1 {
+      font-family: "EB Garamond", serif;
+      font-size: 32px;
+      font-weight: 500;
+      margin: 0 0 0.5em;
+    }
+
+    h2 {
+      font-family: "EB Garamond", serif;
+      font-size: 26px;
+      font-weight: 400;
+      margin: 2em 0 0.5em;
+    }
+
+    h3 {
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      margin: 1.5em 0 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid black;
+      margin: 2em 0;
+    }
+
+    strong { font-weight: 500; }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      background: #f4f4f4;
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+    }
+
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      background: #f4f4f4;
+      padding: 1em 1.25em;
+      border-radius: 4px;
+      overflow-x: auto;
+      line-height: 1.5;
+      margin: 1.5em 0;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 0.6em 0.8em;
+      text-align: left;
+    }
+
+    th {
+      background: #f9f9f9;
+      font-weight: 500;
+    }
+
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 1.5em;
+    }
+
+    li { margin: 0.4em 0; }
+
+    .meta {
+      font-size: 14px;
+      color: #666;
+      margin-top: 3em;
+      padding-top: 1em;
+      border-top: 0.5px solid #e0e0e0;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 1rem; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <!-- Navigation -->
+  <nav class="nav-links">
+    <a href="/surf-leaderboard.html">&larr; Back to Leaderboard</a>
+    <a href="/#my-work">&larr; Back to Portfolio</a>
+  </nav>
+
+  <!-- Header Image Placeholder -->
+  <div class="header-image">
+    <span>Header Image Placeholder</span>
+  </div>
+
+  <h1>Surfboard Leaderboard</h1>
+  <p>Project writing on physics-informed design for retro arcade aesthetics.</p>
+
+  <hr>
+
+  <h2>Idea</h2>
+
+  <p>Build a retro arcade-styled surfboard leaderboard inspired by Hotline Miami, grounded in real physics rather than arbitrary aesthetic choices. The goal was to create an "optical system chain" that simulates how light actually behaves through CRT displays, camera lenses, and VHS tape—making the visual effects feel authentic rather than decorative.</p>
+
+  <p>Core philosophy: <strong>Physics-informed design</strong>—understanding how real systems work and translating that into visual form.</p>
+
+  <h3>Components</h3>
+  <ul>
+    <li><strong>Main Leaderboard</strong>: Interactive ranked list with hover states, scrolling text, tab switching</li>
+    <li><strong>Thumbnail</strong>: "PRESS START" animation for portfolio display, embedded via iframe</li>
+  </ul>
+
+  <hr>
+
+  <h2>Research</h2>
+
+  <h3>Optical System Chain</h3>
+  <p>We established a signal flow that mirrors real hardware:</p>
+
+  <pre>Light Source → Display Encoding → Hardware (CRT) → Human Vision</pre>
+
+  <p>Each effect in the chain has a physical basis:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Effect</th>
+        <th>Physics</th>
+        <th>Implementation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Phosphor Glow</td>
+        <td>CRT phosphor excitation creates bloom</td>
+        <td>Layered text-shadow with pulsing spread</td>
+      </tr>
+      <tr>
+        <td>Chromatic Aberration</td>
+        <td>Lens dispersion—brighter light = more RGB separation</td>
+        <td>Dual text-shadow (red left, cyan right), intensity tied to glow</td>
+      </tr>
+      <tr>
+        <td>Scanlines + Slot Mask</td>
+        <td>CRT shadow mask creates gaps between phosphor triads</td>
+        <td>CSS gradients with multiply blend mode</td>
+      </tr>
+      <tr>
+        <td>RGB Phosphor Triads</td>
+        <td>Subpixel color pattern on CRT screens</td>
+        <td>Vertical RGB stripes with screen blend mode</td>
+      </tr>
+      <tr>
+        <td>Inverse Intensity</td>
+        <td>Bright bloom fills gaps, making phosphor pattern less visible</td>
+        <td>Phosphor opacity decreases as glow increases</td>
+      </tr>
+      <tr>
+        <td>VHS Glitch</td>
+        <td>Magnetic tape tracking errors cause horizontal displacement</td>
+        <td>Deterministic row displacement on timed cycles</td>
+      </tr>
+      <tr>
+        <td>Harmonic Sway</td>
+        <td>Organic motion from multi-frequency interference</td>
+        <td>Layered sine waves for translation and rotation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Key Physics Concepts</h3>
+  <ul>
+    <li><strong>Blend Modes</strong>: <code>multiply</code> for shadow/gap effects (subtractive), <code>screen</code> for additive light (phosphors)</li>
+    <li><strong>Hermite Smoothstep</strong>: <code>x * x * (3 - 2x)</code> for organic interpolation between glow levels</li>
+    <li><strong>Inverse Intensity</strong>: When glow peaks, phosphor overlay opacity drops (bloom fills the gaps)</li>
+  </ul>
+
+  <h3>Iframe Hover Research</h3>
+  <p>Mouse events don't propagate into iframes with <code>pointer-events: none</code>. Solution: <strong>postMessage API</strong> for parent-to-child communication.</p>
+
+  <hr>
+
+  <h2>Implementation</h2>
+
+  <h3>Architecture</h3>
+
+  <p><strong>Main Leaderboard</strong></p>
+  <ul>
+    <li>Static data and styles moved outside component for performance</li>
+    <li>Animation loop via <code>setInterval</code> at ~60fps</li>
+    <li>Effect functions: <code>getChromaticAberration()</code>, <code>getVHSGlitch()</code>, <code>getTextGlow()</code>, <code>getBorderGlow()</code></li>
+    <li><code>OverflowingTicker</code> component for iPod-style scrolling text with edge fade</li>
+    <li>Full-window overlays for scanlines, phosphors, and VHS tracking bar</li>
+  </ul>
+
+  <p><strong>Thumbnail</strong></p>
+  <ul>
+    <li>Same optical system, more pronounced effects</li>
+    <li>JS-based hover intensity interpolation (0→1 smooth transition)</li>
+    <li>Listens for postMessage from parent for iframe hover state</li>
+  </ul>
+
+  <h3>Key Technical Solutions</h3>
+
+  <p><strong>1. Hover Intensity Without CSS Transition Conflicts</strong></p>
+  <p>CSS transitions fight with JS-driven animations. Solution: interpolate hover state in JS.</p>
+
+  <pre><code>const [hoverIntensity, setHoverIntensity] = useState(0);
+
+const animate = (timestamp) => {
+  setHoverIntensity(prev => {
+    const target = hovered ? 1 : 0;
+    const speed = 0.08;
+    if (Math.abs(prev - target) < 0.01) return target;
+    return prev + (target - prev) * speed;
+  });
+};</code></pre>
+
+  <p><strong>2. Iframe Hover via postMessage</strong></p>
+  <p>Parent page sends hover state, thumbnail listens and updates accordingly.</p>
+
+  <pre><code>// Parent
+link.addEventListener('mouseenter', () => {
+  iframe.contentWindow.postMessage({ type: 'hover', state: true }, '*');
+});
+
+// Iframe
+window.addEventListener('message', (event) => {
+  if (event.data?.type === 'hover') setHovered(event.data.state);
+});</code></pre>
+
+  <p><strong>3. Glow-CA Physics Chain</strong></p>
+  <p>Chromatic aberration pulses in sync with glow (brighter = more separation):</p>
+
+  <pre><code>const getChromaticAberration = (time, size = 2.4) => {
+  const pulse = Math.sin(time * 3);
+  const offset = 0.8 * size * (1 + pulse * 0.25);
+  // ...
+};</code></pre>
+
+  <h3>Final Values</h3>
+
+  <p><strong>Thumbnail:</strong> Glow spread 0.72–3.0px (normal), 1–7px (hover) | CA offset 1.44–2.4px | Hover transition speed 0.08</p>
+
+  <p><strong>Leaderboard:</strong> Base glow 0.8–1.2px | Hover glow 1–3.2px | Scanlines 4.25% opacity | Phosphors 0.24–0.36 opacity (inverse)</p>
+
+  <hr>
+
+  <h2>Learnings</h2>
+
+  <h3>Technical</h3>
+  <ol>
+    <li><strong>CSS transitions don't mix with JS animations</strong>—they try to smooth every frame change, which dampens or kills the animation. Use JS interpolation instead.</li>
+    <li><strong>Iframes are isolated documents</strong>—mouse events don't cross the boundary, especially with <code>pointer-events: none</code>. postMessage is the clean solution.</li>
+    <li><strong>Blend modes matter</strong>—<code>multiply</code> subtracts (shadows/gaps), <code>screen</code> adds (light/phosphors). Using the wrong one breaks the physics.</li>
+    <li><strong>Performance</strong>: Move static data and style objects outside React components to prevent recreation on every render.</li>
+  </ol>
+
+  <h3>Design Philosophy</h3>
+  <ol>
+    <li><strong>Physics-informed design creates authenticity</strong>—effects grounded in real optical/hardware behavior feel "right" even if viewers can't articulate why.</li>
+    <li><strong>The optical chain is a system</strong>—each effect influences the next. Glow causes CA. Glow fills phosphor gaps. Everything is connected.</li>
+    <li><strong>Inverse relationships are powerful</strong>—bright glow reducing phosphor visibility mimics real CRT bloom physics and creates visual coherence.</li>
+  </ol>
+
+  <h3>Broader Context</h3>
+  <p>This work connects to larger fields: <strong>Computational Imaging</strong>, <strong>Physically Based Rendering</strong>, and <strong>Imaging Science</strong>. The same principles apply to hyperspectral imaging work: capturing information that isn't immediately perceptible (non-visible spectra, atmospheric interference) and bringing it into perceivable form.</p>
+
+  <div class="meta">
+    <p>January 2026<br>
+    With assistance from Claude Opus 4.5</p>
+  </div>
+</div>
+
+</body>
+</html>
