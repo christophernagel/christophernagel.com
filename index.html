@@ -131,6 +131,7 @@
             "
           >
             <iframe
+              id="surf-thumb-iframe"
               src="/surf-thumb.html"
               style="
                 width: 100%;
@@ -144,6 +145,18 @@
               title="Arcade Surf Leaderboard Thumbnail"
             ></iframe>
           </a>
+          <script>
+            (function() {
+              const iframe = document.getElementById('surf-thumb-iframe');
+              const link = iframe.parentElement;
+              link.addEventListener('mouseenter', () => {
+                iframe.contentWindow.postMessage({ type: 'hover', state: true }, '*');
+              });
+              link.addEventListener('mouseleave', () => {
+                iframe.contentWindow.postMessage({ type: 'hover', state: false }, '*');
+              });
+            })();
+          </script>
           <small>Personal, 2025<br />React, CSS Animations</small>
         </div>
         <div class="portfolio-item">
