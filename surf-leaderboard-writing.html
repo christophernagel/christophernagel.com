@@ -16,20 +16,24 @@
   <style>
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: "Inter", sans-serif;
       font-size: 16px;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.5;
       color: #1a1a1a;
       background: #fff;
     }
 
     .wrapper {
       width: 96%;
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
       padding: 0 0 4rem;
     }
@@ -80,25 +84,48 @@
       font-size: 19px;
     }
 
-    /* Back Links */
-    .back-links {
+    /* Page Navigation */
+    .page-nav {
       display: flex;
-      gap: 2rem;
+      justify-content: space-between;
+      align-items: baseline;
       padding-top: calc(1rem + 4px);
       padding-bottom: 0;
       margin-bottom: 24px;
-      font-size: 14px;
     }
 
-    .back-links a {
+    .page-nav-left {
+      display: flex;
+      gap: 1.75rem;
+    }
+
+    .page-nav-right {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .page-nav a {
       color: #1a1a1a;
       text-decoration: none;
       font-family: "EB Garamond", Georgia, serif;
       font-size: 18px;
     }
 
-    .back-links a:hover {
+    .page-nav-right a {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .page-nav a:hover {
       color: #527979;
+    }
+
+    /* Byline */
+    .byline {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 16px;
+      color: #666;
+      margin: 0;
     }
 
     /* Header Image */
@@ -126,35 +153,44 @@
       font-family: "EB Garamond", serif;
       font-size: 32px;
       font-weight: 500;
-      margin: 0 0 0.5em;
+      margin: 0 0 0.35em;
     }
 
     h2 {
       font-family: "EB Garamond", serif;
       font-size: 26px;
       font-weight: 400;
-      margin: 2em 0 0.5em;
+      margin: 2.5em 0 0.5em;
+      scroll-margin-top: 100px;
     }
 
     h3 {
       font-family: "Jost", sans-serif;
-      font-size: 14px;
+      font-size: 15.5px;
       font-weight: 500;
-      margin: 1.5em 0 0.5em;
+      margin: 1.75em 0 0.5em;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
+    h4 {
+      font-family: "EB Garamond", serif;
+      font-size: 18px;
+      font-weight: 500;
+      margin: 1.5em 0 0.25em;
+    }
+
     p {
-      margin: 1em 0;
+      margin: 0 0 1em;
       font-family: "EB Garamond", Georgia, serif;
       font-size: 18px;
+      letter-spacing: 0.01em;
     }
 
     hr {
       border: none;
       border-top: 0.5px solid black;
-      margin: 2em 0;
+      margin: 2.5em 0;
     }
 
     strong { font-weight: 500; }
@@ -174,8 +210,8 @@
       padding: 1em 1.25em;
       border-radius: 4px;
       overflow-x: auto;
-      line-height: 1.5;
-      margin: 1.5em 0;
+      line-height: 1.45;
+      margin: 0 0 1.25em;
     }
 
     pre code {
@@ -186,7 +222,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5em 0;
+      margin: 0 0 1.25em;
       font-size: 14px;
     }
 
@@ -194,6 +230,7 @@
       border: 1px solid #e0e0e0;
       padding: 0.6em 0.8em;
       text-align: left;
+      letter-spacing: 0.01em;
     }
 
     th {
@@ -202,14 +239,15 @@
     }
 
     ul, ol {
-      margin: 1em 0;
+      margin: 0 0 1em;
       padding-left: 1.5em;
     }
 
     li {
-      margin: 0.4em 0;
+      margin: 0.3em 0;
       font-family: "EB Garamond", Georgia, serif;
       font-size: 18px;
+      letter-spacing: 0.01em;
     }
 
     .meta {
@@ -220,10 +258,89 @@
       border-top: 0.5px solid #e0e0e0;
     }
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 18px;
+      height: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+      top: -8px;
+      right: 32px;
+      z-index: 100;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #1a1a1a;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% - 38px);
+      right: 22px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      padding: calc(1rem - 4px) 1.5rem 1rem calc(1.5rem - 4px);
+      z-index: 99;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-menu a {
+      color: #666;
+      text-decoration: none;
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 16px;
+    }
+
+    .mobile-menu a:hover {
+      color: #527979;
+    }
+
     @media (max-width: 600px) {
       .nav-links { gap: 1rem; }
       h1 { font-size: 26px; }
       h2 { font-size: 22px; }
+
+      .page-nav {
+        position: relative;
+      }
+
+      .page-nav-right {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
     }
   </style>
 </head>
@@ -254,22 +371,42 @@
     <img src="/images/Writing images/5.png" alt="Abstract impressionist painting of light becoming signal">
   </div>
 
-  <h1>Surfboard Leaderboard</h1>
-  <p>Project writing on physics-informed design for retro arcade aesthetics.</p>
+  <h1 style="margin-bottom: 0.2em;">Surfboard Leaderboard</h1>
+  <p style="margin-bottom: 0.25em; margin-top: 2px;">Project writing on physics-informed design for retro arcade aesthetics.</p>
+  <p class="byline" style="margin-top: -4px;">Chris Nagel · January 2026</p>
 
-  <!-- Back Links -->
-  <nav class="back-links">
-    <a href="/#my-work">&larr; Back to Portfolio</a>
-    <a href="/surf-leaderboard.html">&larr; Back to Leaderboard</a>
+  <!-- Page Navigation -->
+  <nav class="page-nav">
+    <div class="page-nav-left">
+      <a href="/#my-work">&larr; Portfolio</a>
+      <a href="/surf-leaderboard.html">&larr; Leaderboard</a>
+    </div>
+    <div class="page-nav-right">
+      <a href="#idea">Idea</a>
+      <a href="#research">Research</a>
+      <a href="#implementation">Implementation</a>
+      <a href="#tuning">Tuning</a>
+      <a href="#learnings">Learnings</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#idea">Idea</a>
+      <a href="#research">Research</a>
+      <a href="#implementation">Implementation</a>
+      <a href="#tuning">Tuning</a>
+      <a href="#learnings">Learnings</a>
+    </div>
   </nav>
 
-  <hr>
+  <hr style="margin-top: calc(2.5em - 12px);">
 
-  <h2>Idea</h2>
+  <h2 id="idea">Idea</h2>
 
-  <p>Build a retro arcade-styled surfboard leaderboard inspired by Hotline Miami, grounded in real physics rather than arbitrary aesthetic choices. The goal was to create an "optical system chain" that simulates how light actually behaves through CRT displays, camera lenses, and VHS tape—making the visual effects feel authentic rather than decorative.</p>
-
-  <p>Core philosophy: <strong>Physics-informed design</strong>—understanding how real systems work and translating that into visual form.</p>
+  <p>A retro arcade-styled surfboard leaderboard inspired by Hotline Miami. Rather than applying effects arbitrarily, I wanted each visual choice to be grounded in how CRT displays and analog recording actually work.</p>
 
   <h3>Components</h3>
   <ul>
@@ -277,16 +414,11 @@
     <li><strong>Thumbnail</strong>: "PRESS START" animation for portfolio display, embedded via iframe</li>
   </ul>
 
-  <hr>
+  <p>The approach: simulate the full signal chain from light emission to human perception.</p>
 
-  <h2>Research</h2>
+  <pre>Phosphor Emission → CRT Hardware → Camera Lens → VHS Recording → Observer</pre>
 
-  <h3>Optical System Chain</h3>
-  <p>We established a signal flow that mirrors real hardware:</p>
-
-  <pre>Light Source → Display Encoding → Hardware (CRT) → Human Vision</pre>
-
-  <p>Each effect in the chain has a physical basis:</p>
+  <h3>The Optical Chain</h3>
 
   <table>
     <thead>
@@ -298,136 +430,316 @@
     </thead>
     <tbody>
       <tr>
+        <td>Voltage Sag</td>
+        <td>High voltage drops under load, expanding raster and dimming image</td>
+        <td>Scale and brightness modulation tied to glow pulse</td>
+      </tr>
+      <tr>
+        <td>Convergence Error</td>
+        <td>RGB electron guns drift out of alignment at screen edges</td>
+        <td>Per-channel text-shadow offsets, magnitude tied to screen position</td>
+      </tr>
+      <tr>
+        <td>Beam Landing Error</td>
+        <td>Electrons hit wrong phosphors at corners, causing color tints</td>
+        <td>Radial gradients at corners with color blend mode</td>
+      </tr>
+      <tr>
         <td>Phosphor Glow</td>
-        <td>CRT phosphor excitation creates bloom</td>
+        <td>Electron beam excites phosphor coating, creating bloom</td>
         <td>Layered text-shadow with pulsing spread</td>
       </tr>
       <tr>
-        <td>Chromatic Aberration</td>
-        <td>Lens dispersion—brighter light = more RGB separation</td>
-        <td>Dual text-shadow (red left, cyan right), intensity tied to glow</td>
+        <td>CRT Flicker</td>
+        <td>60Hz refresh cycle with exponential phosphor decay</td>
+        <td>Full-screen overlay with time-based opacity modulation</td>
       </tr>
       <tr>
         <td>Scanlines + Slot Mask</td>
-        <td>CRT shadow mask creates gaps between phosphor triads</td>
+        <td>Shadow mask creates gaps between phosphor triads</td>
         <td>CSS gradients with multiply blend mode</td>
       </tr>
       <tr>
         <td>RGB Phosphor Triads</td>
-        <td>Subpixel color pattern on CRT screens</td>
+        <td>Subpixel color pattern (inverse intensity with bloom)</td>
         <td>Vertical RGB stripes with screen blend mode</td>
       </tr>
       <tr>
-        <td>Inverse Intensity</td>
-        <td>Bright bloom fills gaps, making phosphor pattern less visible</td>
-        <td>Phosphor opacity decreases as glow increases</td>
+        <td>Interlace</td>
+        <td>Alternating odd/even scanline fields</td>
+        <td>Repeating gradient dims every other line</td>
+      </tr>
+      <tr>
+        <td>Chromatic Aberration</td>
+        <td>Camera lens disperses light into RGB fringing</td>
+        <td>Dual text-shadow (red left, cyan right), intensity tied to glow</td>
       </tr>
       <tr>
         <td>VHS Glitch</td>
-        <td>Magnetic tape tracking errors cause horizontal displacement</td>
-        <td>Deterministic row displacement on timed cycles</td>
+        <td>Tape-head misalignment and magnetic dropout cause tracking errors</td>
+        <td>Horizontal displacement on timed cycles</td>
       </tr>
       <tr>
         <td>Harmonic Sway</td>
-        <td>Organic motion from multi-frequency interference</td>
-        <td>Layered sine waves for translation and rotation</td>
+        <td>Layered simple harmonic waves create an intoxicated effect</td>
+        <td>Multi-frequency sine waves for translation and rotation</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>Key Physics Concepts</h3>
-  <ul>
-    <li><strong>Blend Modes</strong>: <code>multiply</code> for shadow/gap effects (subtractive), <code>screen</code> for additive light (phosphors)</li>
-    <li><strong>Hermite Smoothstep</strong>: <code>x * x * (3 - 2x)</code> for organic interpolation between glow levels</li>
-    <li><strong>Inverse Intensity</strong>: When glow peaks, phosphor overlay opacity drops (bloom fills the gaps)</li>
-  </ul>
+  <hr>
 
-  <h3>Iframe Hover Research</h3>
-  <p>Mouse events don't propagate into iframes with <code>pointer-events: none</code>. Solution: <strong>postMessage API</strong> for parent-to-child communication.</p>
+  <h2 id="research">Research</h2>
+
+  <h3>Electron Beam</h3>
+  <p>Effects that occur before light is emitted—beam energy, alignment, and landing.</p>
+
+  <h4>Voltage Sag</h4>
+  <p>CRT high voltage supplies aren't perfectly regulated. Bright content draws more current, which causes the HV to drop slightly. Lower voltage means slower electrons, and slower electrons deflect more in the magnetic field. The result: the raster expands and dims on bright scenes. <a href="https://www.vogons.org/viewtopic.php?t=97387">VOGONS</a></p>
+
+  <h4>Convergence Error</h4>
+  <p>Distinct from chromatic aberration. CA is lens optics—uniform across the frame. Convergence error is CRT hardware—the three electron guns physically misalign, especially at screen edges where deflection angles are greatest. Both create RGB separation, but from different causes and with different spatial patterns. <a href="https://emulation.gametechwiki.com/index.php/CRT-Royale">CRT-Royale</a></p>
+
+  <h4>Beam Landing and Color Purity</h4>
+  <p>Electron beams must hit their precise phosphor color. At screen edges and corners, deflection errors cause beams to land on adjacent phosphors. The shadow mask can also warp from heat at the center. The result is position-dependent color contamination: purple or yellow tints at corners, slight desaturation at edges. <a href="https://emulation.gametechwiki.com/index.php/CRT-Royale">CRT-Royale</a></p>
+
+  <h3>Phosphor Response</h3>
+  <p>Light emission and decay after electrons hit the screen.</p>
+
+  <h4>Phosphor Glow</h4>
+  <p>CRT phosphors are excited by the electron beam, emitting photons as electrons return to lower energy states. At high brightness, phosphor strips physically grow taller, bleeding into adjacent dark areas. The perceived halo around bright elements comes from three sources: light scattering in atmosphere, diffraction in the eye's lens, and veiling glare in camera optics. <a href="https://learnopengl.com/Advanced-Lighting/Bloom">LearnOpenGL</a></p>
+
+  <h4>Phosphor Decay and Flicker</h4>
+  <p>CRT phosphors flash when hit by the electron beam, then decay exponentially until the next refresh. This creates visible flicker, especially in peripheral vision. The P22 phosphor used in most consumer CRTs had medium persistence—fast enough for motion, slow enough to reduce flicker harshness. Unlike modern strobe/BFI, CRT flicker is a rolling scan. The gradual decay feels softer than a hard on/off cycle. <a href="https://blurbusters.com/crt-simulation-in-a-gpu-shader-looks-better-than-bfi/">Blur Busters</a></p>
+
+  <h4>Inverse Intensity</h4>
+  <p>When phosphor glow is at its brightest, the bloom fills the gaps between phosphor triads, making the subpixel pattern less visible. The phosphor overlay opacity decreases as glow increases. <a href="https://emulation.gametechwiki.com/index.php/CRT-Royale">CRT-Royale</a></p>
+
+  <h3>Screen Structure</h3>
+  <p>Physical patterns from the shadow mask and phosphor layout.</p>
+
+  <h4>Scanlines</h4>
+  <p>CRT displays draw images by scanning an electron beam across the screen line by line. With 240p content, only half the screen lines are illuminated per frame, leaving visible gaps. Physical gaps also exist between horizontal rows of phosphor material on the shadow mask. <a href="https://misterfpga.org/viewtopic.php?t=4186">MiSTer FPGA</a> <a href="https://science.jrank.org/pages/1274/Cathode-Ray-Tube-Display-screen.html">JRank</a></p>
+
+  <h4>Interlace</h4>
+  <p>Standard-definition CRTs display interlaced video: odd lines in one field, even lines in the next, at 60 fields per second. This creates 30fps full frames from 60 fields. Fine horizontal details shimmer as alternating lines refresh. <a href="https://github.com/libretro/common-shaders/blob/master/misc/interlacing.cg">libretro</a></p>
+
+  <h3>Recording</h3>
+  <p>Artifacts introduced by camera optics and magnetic tape.</p>
+
+  <h4>Chromatic Aberration</h4>
+  <p>Different wavelengths bend at different angles through glass. Blue light (~450nm) bends more than red (~650nm) because refractive index decreases with wavelength. This creates color fringing at high-contrast edges. Two types exist: longitudinal (colors focus at different distances) and transverse (colors focus at different positions in the focal plane). <a href="https://en.wikipedia.org/wiki/Chromatic_aberration">Wikipedia</a> <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/geoopt/aber2.html">HyperPhysics</a></p>
+
+  <h4>VHS Artifacts</h4>
+  <p>VHS stores data magnetically. Physical wear causes dropout and noise. Misalignment between tape and playback head causes horizontal displacement (tracking errors). Chroma subsampling and analog signal limitations cause colors to smear horizontally. Loss of horizontal sync signal causes lines to jump or tear. <a href="https://halisavakis.com/write-up-vhs-image-effect/">Harry Alisavakis</a> <a href="http://www.avartifactatlas.com/artifacts/head_switching_noise.html">AV Artifact Atlas</a></p>
+
+  <h3>Perception</h3>
+  <p>How the observer experiences the combined effects.</p>
+
+  <h4>Harmonic Motion</h4>
+  <p>Objects on springs or pendulums oscillate following sine/cosine curves. Multiple frequencies with phase offsets create organic, non-repetitive motion. Degraded visuals trigger specific neural responses—the Ganzfeld effect amplifies neural noise when deprived of clear signals; top-down processing causes the brain to rely more on expectations. Combining subtle effects overwhelms normal perceptual processing, creating dreamlike states. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2702442/">NIH PMC</a> <a href="https://en.wikipedia.org/wiki/Ganzfeld_effect">Wikipedia</a></p>
+
+  <h3>Rendering</h3>
+  <p>Technical implementation details.</p>
+
+  <h4>Blend Modes</h4>
+  <p>Each blend mode has specific physics:</p>
+  <ul>
+    <li><code>multiply</code>: Subtractive. Black stays black, white disappears. Used for scanlines and slot mask (simulating gaps/shadows).</li>
+    <li><code>screen</code>: Additive. Black disappears, white stays white. Used for phosphor triads (simulating light emission).</li>
+    <li><code>color</code>: Affects hue/saturation only. Used for beam landing error tints.</li>
+  </ul>
 
   <hr>
 
-  <h2>Implementation</h2>
+  <h2 id="implementation">Implementation</h2>
 
   <h3>Architecture</h3>
+  <p>The leaderboard runs a ~60fps animation loop via <code>setInterval</code>. Effect functions take the current time and return CSS properties—text-shadow, transform, filter—which are applied inline. Static data and styles live outside the React component to prevent recreation on each render. Full-window overlay divs handle screen-wide effects like scanlines, phosphors, and flicker.</p>
 
-  <p><strong>Main Leaderboard</strong></p>
-  <ul>
-    <li>Static data and styles moved outside component for performance</li>
-    <li>Animation loop via <code>setInterval</code> at ~60fps</li>
-    <li>Effect functions: <code>getChromaticAberration()</code>, <code>getVHSGlitch()</code>, <code>getTextGlow()</code>, <code>getBorderGlow()</code></li>
-    <li><code>OverflowingTicker</code> component for iPod-style scrolling text with edge fade</li>
-    <li>Full-window overlays for scanlines, phosphors, and VHS tracking bar</li>
-  </ul>
+  <h3>Electron Beam Effects</h3>
+  <p>These happen before light is emitted—affecting beam energy, alignment, and where electrons land.</p>
 
-  <p><strong>Thumbnail</strong></p>
-  <ul>
-    <li>Same optical system, more pronounced effects</li>
-    <li>JS-based hover intensity interpolation (0→1 smooth transition)</li>
-    <li>Listens for postMessage from parent for iframe hover state</li>
-  </ul>
+  <h4>Voltage Sag</h4>
+  <p>Applied to the entire board container as <code>transform: scale()</code> and <code>filter: brightness()</code>. Tied to the same glow pulse as text effects so brighter content causes more sag. A slower secondary oscillation adds the irregular "hunting" of a real power supply.</p>
 
-  <h3>Key Technical Solutions</h3>
-
-  <p><strong>1. Hover Intensity Without CSS Transition Conflicts</strong></p>
-  <p>CSS transitions fight with JS-driven animations. Solution: interpolate hover state in JS.</p>
-
-  <pre><code>const [hoverIntensity, setHoverIntensity] = useState(0);
-
-const animate = (timestamp) => {
-  setHoverIntensity(prev => {
-    const target = hovered ? 1 : 0;
-    const speed = 0.08;
-    if (Math.abs(prev - target) < 0.01) return target;
-    return prev + (target - prev) * speed;
-  });
+  <pre><code>const getVoltageSag = (time) => {
+  const bloomPulse = Math.sin(time * 3);
+  const slowDrift = Math.sin(time * 0.15) * 0.3;
+  const sagLevel = 0.65 + bloomPulse * 0.35 + slowDrift * 0.1;
+  return {
+    transform: `scale(${1 + sagLevel * 0.0015})`,
+    filter: `brightness(${1 - sagLevel * 0.008})`
+  };
 };</code></pre>
 
-  <p><strong>2. Iframe Hover via postMessage</strong></p>
-  <p>Parent page sends hover state, thumbnail listens and updates accordingly.</p>
+  <h4>Convergence Error</h4>
+  <p>Returns per-channel RGB offsets that get applied as additional text-shadow layers. Each text element passes its normalized screen position (-1 to 1), so elements near edges and corners get more separation. Green stays centered as reference; red and blue drift opposite directions.</p>
 
-  <pre><code>// Parent
-link.addEventListener('mouseenter', () => {
-  iframe.contentWindow.postMessage({ type: 'hover', state: true }, '*');
-});
-
-// Iframe
-window.addEventListener('message', (event) => {
-  if (event.data?.type === 'hover') setHovered(event.data.state);
-});</code></pre>
-
-  <p><strong>3. Glow-CA Physics Chain</strong></p>
-  <p>Chromatic aberration pulses in sync with glow (brighter = more separation):</p>
-
-  <pre><code>const getChromaticAberration = (time, size = 2.4) => {
-  const pulse = Math.sin(time * 3);
-  const offset = 0.8 * size * (1 + pulse * 0.25);
-  // ...
+  <pre><code>const getConvergenceError = (time, normalizedX, normalizedY) => {
+  const edgeFactor = Math.sqrt(normX² + normY²);
+  const thermalDrift = Math.sin(time * 0.0275) * 0.825;
+  return {
+    r: { x: staticR.x + dynamicR.x + thermalDrift, y: ... },
+    g: { x: 0, y: 0 },
+    b: { x: staticB.x + dynamicB.x - thermalDrift, y: ... }
+  };
 };</code></pre>
+
+  <h4>Beam Landing Error</h4>
+  <p>A full-screen overlay with radial gradients at each corner (purple and yellow tints) plus a center gradient that shifts with thermal drift. Applied with <code>mix-blend-mode: color</code> so it tints without affecting luminance.</p>
+
+  <h3>Phosphor Effects</h3>
+  <p>These simulate light emission and decay after electrons hit the screen.</p>
+
+  <h4>Phosphor Glow</h4>
+  <p>Implemented as layered text-shadow on all text elements. White core, orange bloom layers at increasing radii. Spread values pulse with <code>Math.sin(time * 3)</code>. Chromatic aberration shadows (red left, cyan right) are added to the same text-shadow string.</p>
+
+  <h4>CRT Flicker</h4>
+  <p>A full-screen black overlay with opacity modulated by an exponential decay curve. The decay resets 60 times per second, matching CRT refresh. Low persistence (0.4) makes the flicker visible; intensity is kept to 3% to avoid distraction.</p>
+
+  <pre><code>const getCRTFlicker = (time) => {
+  const cyclePosition = (time * 60) % 1;
+  const decay = Math.pow(0.4, cyclePosition * 8);
+  return { brightness: 1 - (1 - decay) * 0.03 };
+};</code></pre>
+
+  <h3>Screen Structure Effects</h3>
+  <p>Physical patterns from the shadow mask and phosphor layout.</p>
+
+  <h4>Scanlines + Slot Mask</h4>
+  <p>CSS repeating gradients create horizontal gaps (scanlines) and vertical gaps (slot mask). Applied with <code>multiply</code> blend mode so they darken without affecting colors.</p>
+
+  <h4>RGB Phosphor Triads</h4>
+  <p>Vertical red-green-blue stripes at 2px repeat. Applied with <code>screen</code> blend mode to simulate additive light. Opacity pulses inversely with glow—brighter bloom fills the gaps, making triads less visible.</p>
+
+  <h4>Interlace</h4>
+  <p>A static repeating gradient that dims every other line. We tested animated field alternation but it created unwanted jitter at our frame rate.</p>
+
+  <h3>Recording and Perception Effects</h3>
+  <p>Artifacts from camera recording and the observer's state.</p>
+
+  <h4>VHS Tracking Bar</h4>
+  <p>A horizontal gradient band that slowly drifts up and down the screen, simulating the bright bar visible when filming a CRT.</p>
+
+  <h4>VHS Glitch</h4>
+  <p>Applied per-row as <code>transform: translateX()</code>. Deterministic timing based on row index creates the appearance of tracking errors without true randomness.</p>
+
+  <h4>Harmonic Sway</h4>
+  <p>Per-row translation and rotation using sine waves at different frequencies (1.2, 0.8, 0.6 Hz) with phase offsets based on row index. Creates organic, non-repetitive motion.</p>
+
+  <h3>Overlay Stack</h3>
+  <p>Full-screen overlays are layered by z-index. Blend modes determine how each interacts with content below.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>z-index</th>
+        <th>Overlay</th>
+        <th>Blend Mode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>10</td><td>Scanlines + Slot Mask</td><td>multiply</td></tr>
+      <tr><td>10</td><td>Interlace</td><td>multiply</td></tr>
+      <tr><td>11</td><td>RGB Phosphor Triads</td><td>screen</td></tr>
+      <tr><td>11</td><td>VHS Tracking Bar</td><td>normal</td></tr>
+      <tr><td>12</td><td>Beam Landing Error</td><td>color</td></tr>
+      <tr><td>12</td><td>CRT Flicker</td><td>multiply</td></tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2 id="tuning">Tuning</h2>
+
+  <p>Most values went through several rounds of adjustment. The process: set to extreme to see what the effect actually does, then dial back until it's felt but not seen.</p>
 
   <h3>Final Values</h3>
 
-  <p><strong>Thumbnail:</strong> Glow spread 0.72–3.0px (normal), 1–7px (hover) | CA offset 1.44–2.4px | Hover transition speed 0.08</p>
+  <h4>Electron Beam</h4>
+  <ul>
+    <li><strong>Voltage Sag</strong>: 0.15% scale, 0.8% brightness, tied to glow pulse with slow secondary drift at 0.15 Hz</li>
+    <li><strong>Convergence</strong>: Static offset 0.8px, dynamic scale 2.2, thermal drift 0.825px amplitude at 0.0275 Hz</li>
+    <li><strong>Beam Landing</strong>: Corner intensity 2.5%, center thermal drift 1.5%</li>
+  </ul>
 
-  <p><strong>Leaderboard:</strong> Base glow 0.8–1.2px | Hover glow 1–3.2px | Scanlines 4.25% opacity | Phosphors 0.24–0.36 opacity (inverse)</p>
+  <h4>Phosphor Response</h4>
+  <ul>
+    <li><strong>Glow</strong>: Base spread 1.0px pulsing ±0.2px, hover spread 2.1px pulsing ±1.1px</li>
+    <li><strong>Flicker</strong>: 60Hz refresh, persistence 0.4, intensity 3%</li>
+  </ul>
+
+  <h4>Screen Structure</h4>
+  <ul>
+    <li><strong>Scanlines</strong>: 4.25% opacity, 2px repeat</li>
+    <li><strong>Phosphor Triads</strong>: 24-36% opacity (inverse with glow), 2px repeat</li>
+    <li><strong>Interlace</strong>: Static pattern, 2.96% dim on alternating lines</li>
+  </ul>
 
   <hr>
 
-  <h2>Learnings</h2>
+  <h2 id="learnings">Learnings</h2>
 
-  <h3>Technical</h3>
-  <ol>
-    <li><strong>CSS transitions don't mix with JS animations</strong>—they try to smooth every frame change, which dampens or kills the animation. Use JS interpolation instead.</li>
-    <li><strong>Iframes are isolated documents</strong>—mouse events don't cross the boundary, especially with <code>pointer-events: none</code>. postMessage is the clean solution.</li>
-    <li><strong>Blend modes matter</strong>—<code>multiply</code> subtracts (shadows/gaps), <code>screen</code> adds (light/phosphors). Using the wrong one breaks the physics.</li>
-    <li><strong>Performance</strong>: Move static data and style objects outside React components to prevent recreation on every render.</li>
-  </ol>
+  <h3>Animation</h3>
+  <ul>
+    <li><strong>CSS transitions fight JS animations.</strong> They try to smooth every frame change, which dampens the effect. Interpolate state values in JS instead.</li>
+    <li><strong>Sync related effects.</strong> Voltage sag tied to glow pulse feels physical. Independent timing feels like decoration.</li>
+  </ul>
 
-  <h3>Design Philosophy</h3>
-  <ol>
-    <li><strong>Physics-informed design creates authenticity</strong>—effects grounded in real optical/hardware behavior feel "right" even if viewers can't articulate why.</li>
-    <li><strong>The optical chain is a system</strong>—each effect influences the next. Glow causes CA. Glow fills phosphor gaps. Everything is connected.</li>
-    <li><strong>Inverse relationships are powerful</strong>—bright glow reducing phosphor visibility mimics real CRT bloom physics and creates visual coherence.</li>
-  </ol>
+  <h3>Rendering</h3>
+  <ul>
+    <li><strong>Blend modes have specific physics.</strong> Multiply for shadows/gaps, screen for light emission. Using the wrong one breaks the simulation.</li>
+    <li><strong>Position-dependent effects matter.</strong> Convergence error and beam landing change across the screen. Uniform application looks flat.</li>
+  </ul>
+
+  <h3>System Design</h3>
+  <ul>
+    <li><strong>Inverse relationships create coherence.</strong> Brighter glow → less visible phosphor pattern. Effects that respond to each other feel like a system.</li>
+    <li><strong>Order matters.</strong> Structuring effects by signal chain—beam, phosphor, screen, recording, perception—clarifies what each simulates and how they interact.</li>
+  </ul>
+
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://emulation.gametechwiki.com/index.php/CRT-Royale">CRT-Royale Shader Documentation</a> &ndash; TroggleMonkey</li>
+    <li><a href="https://blurbusters.com/crt-simulation-in-a-gpu-shader-looks-better-than-bfi/">CRT Simulation in a GPU Shader</a> &ndash; Mark Rejhon, Blur Busters</li>
+    <li><a href="https://github.com/libretro/common-shaders/blob/master/misc/interlacing.cg">Interlacing Shader</a> &ndash; cgwg, libretro</li>
+    <li><a href="https://www.vogons.org/viewtopic.php?t=97387">CRT Bloom/Breathing Discussion</a> &ndash; VOGONS Forum</li>
+    <li><a href="http://www.avartifactatlas.com/artifacts/head_switching_noise.html">AV Artifact Atlas</a> &ndash; Bay Area Video Coalition</li>
+    <li><a href="https://learnopengl.com/Advanced-Lighting/Bloom">Bloom</a> &ndash; Joey de Vries, LearnOpenGL</li>
+    <li><a href="https://en.wikipedia.org/wiki/Chromatic_aberration">Chromatic Aberration</a> &ndash; Wikipedia</li>
+    <li><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/geoopt/aber2.html">Aberration</a> &ndash; HyperPhysics, Georgia State University</li>
+    <li><a href="https://misterfpga.org/viewtopic.php?t=4186">Scanline Discussion</a> &ndash; MiSTer FPGA Forum</li>
+    <li><a href="https://science.jrank.org/pages/1274/Cathode-Ray-Tube-Display-screen.html">Cathode Ray Tube Display Screen</a> &ndash; JRank Science Encyclopedia</li>
+    <li><a href="https://halisavakis.com/write-up-vhs-image-effect/">VHS Image Effect</a> &ndash; Harry Alisavakis</li>
+    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2702442/">Visual Perception and Hallucination</a> &ndash; NIH PMC</li>
+    <li><a href="https://en.wikipedia.org/wiki/Ganzfeld_effect">Ganzfeld Effect</a> &ndash; Wikipedia</li>
+  </ul>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close menu when clicking a link
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+</script>
+
 </body>
 </html>
