@@ -156,24 +156,6 @@ hr {
   border-color: #272d31;
 }
 
-.portfolio-item:last-child {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.portfolio-item:last-child a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.portfolio-item:last-child img {
-  max-width: 112px;
-  border: none;
-}
-
 a {
   color: #2774ae;
   text-decoration: none;
